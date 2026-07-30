@@ -52,17 +52,6 @@ const schema = z.object({
   notes: z.string().trim().max(1000).optional(),
 });
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
-
-async function uploadDoc(file: File | null, folder: string) {
-  if (!file) return null;
-  if (file.size > MAX_FILE_SIZE) throw new Error("حجم الملف يجب أن يكون أقل من 5 ميغابايت");
-  const ext = file.name.split(".").pop() ?? "dat";
-  const path = `${folder}/${crypto.randomUUID()}.${ext}`;
-  const { error } = await supabase.storage.from("documents").upload(path, file);
-  if (error) throw error;
-  return path;
-}
 
 function Field({
   label,

@@ -88,11 +88,6 @@ function RegisterPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [gender, setGender] = useState("");
   const [section, setSection] = useState("nursery");
-  const [files, setFiles] = useState<{
-    birth: File | null;
-    id: File | null;
-    photo: File | null;
-  }>({ birth: null, id: null, photo: null });
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();

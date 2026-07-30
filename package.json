@@ -67,10 +67,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@emnapi/core": "^1.11.3",
     "@eslint/js": "^9.32.0",
     "@lovable.dev/vite-tanstack-config": "2.8.2",
-    "@rolldown/binding-win32-x64-msvc": "^1.2.1",
     "@types/node": "^22.16.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",

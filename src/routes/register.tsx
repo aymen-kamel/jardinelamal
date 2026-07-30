@@ -149,7 +149,7 @@ function RegisterPage() {
     <div className="mx-auto max-w-3xl px-4 py-14">
       <h1 className="text-center text-3xl font-bold md:text-4xl">📝 التسجيل الإلكتروني</h1>
       <p className="mt-3 text-center text-muted-foreground">
-        املأ المعلومات التالية وأرفق الوثائق المطلوبة لإتمام طلب تسجيل طفلك.
+        املأ المعلومات التالية لإتمام طلب تسجيل طفلك.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-8">

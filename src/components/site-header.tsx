@@ -9,7 +9,6 @@ const NAV = [
   { to: "/", label: "الرئيسية" },
   { to: "/register", label: "التسجيل" },
   { to: "/contact", label: "اتصل بنا" },
-  { to: "/admin", label: "لوحة الإدارة" },
 ] as const;
 
 export function SiteHeader() {

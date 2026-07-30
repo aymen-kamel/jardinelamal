@@ -203,19 +203,14 @@ function AdminPage() {
     navigate({ to: "/auth", replace: true });
   }
 
-  if (state === "loading") {
-    return <div className="px-4 py-24 text-center text-muted-foreground">جاري التحميل...</div>;
-  }
+  useEffect(() => {
+    if (state === "anonymous") {
+      navigate({ to: "/auth", replace: true });
+    }
+  }, [state, navigate]);
 
-  if (state === "anonymous") {
-    return (
-      <div className="mx-auto max-w-md px-4 py-24 text-center">
-        <h1 className="text-2xl font-bold">🔐 يجب تسجيل الدخول</h1>
-        <Button className="mt-6 rounded-full px-8" onClick={() => navigate({ to: "/auth" })}>
-          الذهاب لصفحة الدخول
-        </Button>
-      </div>
-    );
+  if (state === "loading" || state === "anonymous") {
+    return <div className="px-4 py-24 text-center text-muted-foreground">جاري التحميل...</div>;
   }
 
   if (state === "not-admin") {

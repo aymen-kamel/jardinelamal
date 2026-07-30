@@ -27,11 +27,6 @@ export function SiteFooter() {
                 اتصل بنا
               </Link>
             </li>
-            <li>
-              <Link to="/admin" className="hover:text-primary">
-                لوحة الإدارة
-              </Link>
-            </li>
           </ul>
         </div>
         <div>

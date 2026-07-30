@@ -52,17 +52,6 @@ const schema = z.object({
   notes: z.string().trim().max(1000).optional(),
 });
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
-
-async function uploadDoc(file: File | null, folder: string) {
-  if (!file) return null;
-  if (file.size > MAX_FILE_SIZE) throw new Error("حجم الملف يجب أن يكون أقل من 5 ميغابايت");
-  const ext = file.name.split(".").pop() ?? "dat";
-  const path = `${folder}/${crypto.randomUUID()}.${ext}`;
-  const { error } = await supabase.storage.from("documents").upload(path, file);
-  if (error) throw error;
-  return path;
-}
 
 function Field({
   label,
@@ -88,11 +77,6 @@ function RegisterPage() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [gender, setGender] = useState("");
   const [section, setSection] = useState("nursery");
-  const [files, setFiles] = useState<{
-    birth: File | null;
-    id: File | null;
-    photo: File | null;
-  }>({ birth: null, id: null, photo: null });
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -124,20 +108,12 @@ function RegisterPage() {
     setLoading(true);
 
     try {
-      const [birthPath, idPath, photoPath] = await Promise.all([
-        uploadDoc(files.birth, "birth-certificates"),
-        uploadDoc(files.id, "parent-ids"),
-        uploadDoc(files.photo, "child-photos"),
-      ]);
-
       const { error } = await supabase.from("registrations").insert({
         ...parsed.data,
         parent_email: parsed.data.parent_email || null,
-        birth_certificate_path: birthPath,
-        parent_id_path: idPath,
-        child_photo_path: photoPath,
       });
       if (error) throw error;
+
 
       setDone(true);
       toast.success("تم إرسال طلب التسجيل بنجاح");
@@ -173,7 +149,7 @@ function RegisterPage() {
     <div className="mx-auto max-w-3xl px-4 py-14">
       <h1 className="text-center text-3xl font-bold md:text-4xl">📝 التسجيل الإلكتروني</h1>
       <p className="mt-3 text-center text-muted-foreground">
-        املأ المعلومات التالية وأرفق الوثائق المطلوبة لإتمام طلب تسجيل طفلك.
+        املأ المعلومات التالية لإتمام طلب تسجيل طفلك.
       </p>
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-8">
@@ -238,33 +214,8 @@ function RegisterPage() {
           </Field>
         </section>
 
-        <section className="surface-card space-y-5 p-6">
-          <h2 className="text-xl font-bold">📄 الوثائق المطلوبة</h2>
-          <p className="text-sm text-muted-foreground">الحد الأقصى لحجم كل ملف: 5 ميغابايت.</p>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="شهادة ميلاد الطفل">
-              <Input
-                type="file"
-                accept="image/*,application/pdf"
-                onChange={(e) => setFiles((f) => ({ ...f, birth: e.target.files?.[0] ?? null }))}
-              />
-            </Field>
-            <Field label="نسخة من بطاقة التعريف الوطنية للولي">
-              <Input
-                type="file"
-                accept="image/*,application/pdf"
-                onChange={(e) => setFiles((f) => ({ ...f, id: e.target.files?.[0] ?? null }))}
-              />
-            </Field>
-            <Field label="صورة شخصية للطفل">
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setFiles((f) => ({ ...f, photo: e.target.files?.[0] ?? null }))}
-              />
-            </Field>
-          </div>
-        </section>
+
+
 
         <Button type="submit" size="lg" disabled={loading} className="w-full rounded-full text-base">
           {loading ? "جاري الإرسال..." : "🟢 إرسال طلب التسجيل"}

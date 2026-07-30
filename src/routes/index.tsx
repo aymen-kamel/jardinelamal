@@ -3,9 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import heroImage from "@/assets/hero-kindergarten.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
 import { ACTIVITIES, FEATURES, SCHEDULE, SECTIONS, SITE } from "@/lib/site-data";
 
 export const Route = createFileRoute("/")({
@@ -27,11 +24,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const STATIC_GALLERY = [
-  { src: gallery1, alt: "أطفال يرسمون داخل قسم الروضة" },
-  { src: gallery2, alt: "أطفال يلعبون في ساحة الروضة" },
-  { src: gallery3, alt: "احتفال داخل الروضة مع البالونات" },
-];
+
 
 function useGalleryImages() {
   return useQuery({
@@ -70,7 +63,7 @@ function SectionTitle({ icon, children }: { icon: string; children: React.ReactN
 }
 
 function HomePage() {
-  const { data: dbImages } = useGalleryImages();
+  const { data: dbImages, isLoading: galleryLoading } = useGalleryImages();
 
   return (
     <div>
@@ -188,28 +181,23 @@ function HomePage() {
         <p className="mt-3 text-center text-muted-foreground">
           الأنشطة اليومية، الأقسام، الأطفال أثناء اللعب، الاحتفالات، الرحلات وفضاء الروضة.
         </p>
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {STATIC_GALLERY.map((image) => (
-            <img
-              key={image.alt}
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              width={900}
-              height={700}
-              className="h-64 w-full rounded-2xl object-cover shadow-soft"
-            />
-          ))}
-          {(dbImages ?? []).map((image) => (
-            <img
-              key={image.id}
-              src={image.url as string}
-              alt={image.title ?? "صورة من روضة الأمل"}
-              loading="lazy"
-              className="h-64 w-full rounded-2xl object-cover shadow-soft"
-            />
-          ))}
-        </div>
+        {galleryLoading ? (
+          <p className="mt-10 text-center text-muted-foreground">جاري تحميل الصور...</p>
+        ) : (dbImages ?? []).length === 0 ? (
+          <p className="mt-10 text-center text-muted-foreground">لا توجد صور في المعرض بعد.</p>
+        ) : (
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {(dbImages ?? []).map((image) => (
+              <img
+                key={image.id}
+                src={image.url as string}
+                alt={image.title ?? "صورة من روضة الأمل"}
+                loading="lazy"
+                className="h-64 w-full rounded-2xl object-cover shadow-soft"
+              />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Location */}

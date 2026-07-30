@@ -238,33 +238,8 @@ function RegisterPage() {
           </Field>
         </section>
 
-        <section className="surface-card space-y-5 p-6">
-          <h2 className="text-xl font-bold">📄 الوثائق المطلوبة</h2>
-          <p className="text-sm text-muted-foreground">الحد الأقصى لحجم كل ملف: 5 ميغابايت.</p>
-          <div className="grid gap-5 sm:grid-cols-2">
-            <Field label="شهادة ميلاد الطفل">
-              <Input
-                type="file"
-                accept="image/*,application/pdf"
-                onChange={(e) => setFiles((f) => ({ ...f, birth: e.target.files?.[0] ?? null }))}
-              />
-            </Field>
-            <Field label="نسخة من بطاقة التعريف الوطنية للولي">
-              <Input
-                type="file"
-                accept="image/*,application/pdf"
-                onChange={(e) => setFiles((f) => ({ ...f, id: e.target.files?.[0] ?? null }))}
-              />
-            </Field>
-            <Field label="صورة شخصية للطفل">
-              <Input
-                type="file"
-                accept="image/*"
-                onChange={(e) => setFiles((f) => ({ ...f, photo: e.target.files?.[0] ?? null }))}
-              />
-            </Field>
-          </div>
-        </section>
+
+
 
         <Button type="submit" size="lg" disabled={loading} className="w-full rounded-full text-base">
           {loading ? "جاري الإرسال..." : "🟢 إرسال طلب التسجيل"}

@@ -124,20 +124,12 @@ function RegisterPage() {
     setLoading(true);
 
     try {
-      const [birthPath, idPath, photoPath] = await Promise.all([
-        uploadDoc(files.birth, "birth-certificates"),
-        uploadDoc(files.id, "parent-ids"),
-        uploadDoc(files.photo, "child-photos"),
-      ]);
-
       const { error } = await supabase.from("registrations").insert({
         ...parsed.data,
         parent_email: parsed.data.parent_email || null,
-        birth_certificate_path: birthPath,
-        parent_id_path: idPath,
-        child_photo_path: photoPath,
       });
       if (error) throw error;
+
 
       setDone(true);
       toast.success("تم إرسال طلب التسجيل بنجاح");

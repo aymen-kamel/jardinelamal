@@ -206,14 +206,21 @@ function HomePage() {
           <SectionTitle icon="📍">موقع الروضة</SectionTitle>
           <p className="mt-6 text-lg leading-8">{SITE.address}</p>
           <p className="mt-4 text-muted-foreground">
-            📞 {SITE.phone1} — ☎️ {SITE.phone2}
+            📞 <span dir="ltr" className="inline-block">{SITE.phone1}</span> — ☎️ <span dir="ltr" className="inline-block">{SITE.phone2}</span>
           </p>
           <p className="text-muted-foreground">✉️ {SITE.email}</p>
-          <Button asChild size="lg" className="mt-8 rounded-full px-8">
-            <a href={SITE.mapsUrl} target="_blank" rel="noreferrer">
-              📍 افتح الموقع في خرائط Google
-            </a>
-          </Button>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Button asChild size="lg" className="rounded-full px-8">
+              <a href={SITE.mapsUrl} target="_blank" rel="noreferrer">
+                📍 افتح الموقع في خرائط Google
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="rounded-full bg-card px-8">
+              <a href={SITE.facebookUrl} target="_blank" rel="noreferrer">
+                📘 صفحتنا على الفايسبوك
+              </a>
+            </Button>
+          </div>
         </div>
       </section>
 

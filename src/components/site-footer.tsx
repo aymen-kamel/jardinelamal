@@ -36,19 +36,25 @@ export function SiteFooter() {
             <li>
               📞{" "}
               <a href={`tel:${SITE.phone1.replace(/\s/g, "")}`} className="hover:text-primary">
-                {SITE.phone1}
+                <span dir="ltr" className="inline-block">{SITE.phone1}</span>
               </a>
             </li>
             <li>
               ☎️{" "}
               <a href={`tel:${SITE.phone2.replace(/\s/g, "")}`} className="hover:text-primary">
-                {SITE.phone2}
+                <span dir="ltr" className="inline-block">{SITE.phone2}</span>
               </a>
             </li>
             <li>
               ✉️{" "}
               <a href={`mailto:${SITE.email}`} className="hover:text-primary">
                 {SITE.email}
+              </a>
+            </li>
+            <li>
+              📘{" "}
+              <a href={SITE.facebookUrl} target="_blank" rel="noreferrer" className="hover:text-primary font-semibold">
+                صفحتنا على الفايسبوك
               </a>
             </li>
           </ul>

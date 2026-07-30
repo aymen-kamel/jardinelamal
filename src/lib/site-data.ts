@@ -8,6 +8,7 @@ export const SITE = {
   phone1: "54 449 264",
   phone2: "74 665 323",
   email: "jardinelamal@gmail.com",
+  facebookUrl: "https://www.facebook.com/jardinelamalsfax",
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=" +
     encodeURIComponent("طريق المحارزة كم 3.5 صفاقس"),

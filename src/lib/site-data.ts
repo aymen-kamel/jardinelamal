@@ -26,15 +26,15 @@ export const FEATURES = [
 ];
 
 export const SECTIONS = [
-  { value: "nursery", icon: "👶", title: "قسم الضانة", age: "من سنتين إلى 3 سنوات" },
-  { value: "middle", icon: "🧸", title: "القسم المتوسط", age: "من 3 إلى 4 سنوات" },
-  { value: "preparatory", icon: "🎓", title: "القسم التحضيري", age: "من 4 إلى 5 سنوات" },
+  { value: "nursery", icon: "👶", title: "قاعة 3 سنوات", age: "3 سنوات" },
+  { value: "middle", icon: "🧸", title: "قاعة 4 سنوات", age: "4 سنوات" },
+  { value: "preparatory", icon: "🎓", title: "قاعة 5 سنوات", age: "5 سنوات" },
 ];
 
 export const SECTION_LABELS: Record<string, string> = {
-  nursery: "قسم الحضانة",
-  middle: "القسم المتوسط",
-  preparatory: "القسم التحضيري",
+  nursery: "قاعة 3 سنوات",
+  middle: "قاعة 4 سنوات",
+  preparatory: "قاعة التحضيري",
 };
 
 export const ACTIVITIES = [

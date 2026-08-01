@@ -9,9 +9,8 @@ export const SITE = {
   phone2: "74 665 323",
   email: "jardinelamal@gmail.com",
   facebookUrl: "https://www.facebook.com/jardinelamalsfax",
-  mapsUrl:
-    "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent("طريق المحارزة كم 3.5 صفاقس"),
+  mapsUrl: "https://maps.app.goo.gl/1vyav1sovcUE5f3n9",
+  mapsEmbedUrl: "https://maps.google.com/maps?q=34.7203792,10.7261776&hl=ar&z=16&output=embed",
 } as const;
 
 export const FEATURES = [
@@ -27,7 +26,7 @@ export const FEATURES = [
 ];
 
 export const SECTIONS = [
-  { value: "nursery", icon: "👶", title: "قسم الحضانة", age: "من سنتين إلى 3 سنوات" },
+  { value: "nursery", icon: "👶", title: "قسم الضانة", age: "من سنتين إلى 3 سنوات" },
   { value: "middle", icon: "🧸", title: "القسم المتوسط", age: "من 3 إلى 4 سنوات" },
   { value: "preparatory", icon: "🎓", title: "القسم التحضيري", age: "من 4 إلى 5 سنوات" },
 ];

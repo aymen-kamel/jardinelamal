@@ -28,13 +28,13 @@ export const FEATURES = [
 export const SECTIONS = [
   { value: "nursery", icon: "👶", title: "قاعة 3 سنوات", age: "3 سنوات" },
   { value: "middle", icon: "🧸", title: "قاعة 4 سنوات", age: "4 سنوات" },
-  { value: "preparatory", icon: "🎓", title: "قاعة 5 سنوات", age: "5 سنوات" },
+  { value: "preparatory", icon: "🎓", title: "القسم التحضيري", age: "5 سنوات" },
 ];
 
 export const SECTION_LABELS: Record<string, string> = {
   nursery: "قاعة 3 سنوات",
   middle: "قاعة 4 سنوات",
-  preparatory: "قاعة التحضيري",
+  preparatory: "القسم التحضيري",
 };
 
 export const ACTIVITIES = [

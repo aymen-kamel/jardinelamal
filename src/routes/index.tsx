@@ -32,50 +32,65 @@ function HomePage() {
   return (
     <div>
       {/* ===== Hero ===== */}
-      <section className="gradient-hero px-4 py-20 text-center md:py-32">
-        <div className="mx-auto max-w-3xl">
-          <div className="mb-6 text-6xl" aria-hidden>
-            🌸
+      <section className="gradient-hero py-10 md:py-16">
+        <div
+          dir="ltr"
+          className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-6 md:flex-row md:gap-10 md:px-10"
+        >
+          {/* Illustration — left, floating card */}
+          <div className="w-full flex-shrink-0 md:w-[42%]">
+            <img
+              src="/hero-illustration.png"
+              alt="أطفال يلعبون في روضة الأمل"
+              className="h-auto w-full rounded-3xl object-cover shadow-md"
+            />
           </div>
-          <h1 className="text-4xl font-bold leading-tight md:text-6xl">{SITE.name}</h1>
-          <p className="mt-4 text-xl font-semibold text-muted-foreground md:text-2xl">
-            {SITE.tagline}
-          </p>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-muted-foreground">
-            {SITE.intro}
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="rounded-full px-8 text-base">
-              <Link to="/register">📝 سجل طفلك الآن</Link>
-            </Button>
-            <Button asChild size="lg" variant="outline" className="rounded-full px-8 text-base">
-              <Link to="/contact">📞 اتصل بنا</Link>
-            </Button>
-          </div>
-          <div className="mt-12 flex flex-wrap justify-center gap-6 text-sm text-muted-foreground">
-            <a
-              href={`tel:${SITE.phone1.replace(/\s/g, "")}`}
-              className="flex items-center gap-2 hover:text-primary"
-            >
-              📞 <span dir="ltr">{SITE.phone1}</span>
-            </a>
-            <a
-              href={`tel:${SITE.phone2.replace(/\s/g, "")}`}
-              className="flex items-center gap-2 hover:text-primary"
-            >
-              ☎️ <span dir="ltr">{SITE.phone2}</span>
-            </a>
-            <a
-              href={SITE.facebookUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 hover:text-primary"
-            >
-              📘 صفحتنا على الفايسبوك
-            </a>
+
+          {/* Text content — right, RTL */}
+          <div
+            dir="rtl"
+            className="flex w-full flex-col items-start gap-4 text-right md:w-[58%]"
+          >
+            {/* Experience badge */}
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-white/70 px-4 py-1.5 text-sm font-semibold text-primary shadow-sm backdrop-blur-sm">
+              ⭐ أكثر من 20 سنة من الخبرة
+            </div>
+
+            {/* Title + logo icon */}
+            <h1 className="flex items-center gap-3 text-right text-5xl font-bold leading-tight md:text-6xl">
+              روضة الأمل
+              <img
+                src="/favicon.ico"
+                alt=""
+                aria-hidden
+                className="h-11 w-11 object-contain"
+              />
+            </h1>
+
+            {/* Tagline */}
+            <p className="text-xl font-semibold text-muted-foreground md:text-2xl">
+              {SITE.tagline}
+            </p>
+
+            {/* Intro */}
+            <p className="max-w-md text-sm leading-7 text-muted-foreground md:text-base">
+              {SITE.intro}
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="mt-3 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="rounded-full px-7 text-base">
+                <Link to="/register">🟢 سجل طفلك الآن</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="rounded-full bg-white/60 px-7 text-base backdrop-blur-sm">
+                <Link to="/contact">📞 اتصل بنا</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
+
+
 
       {/* ===== Features ===== */}
       <section className="mx-auto max-w-6xl px-4 py-20">

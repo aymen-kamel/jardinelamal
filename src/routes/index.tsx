@@ -25,7 +25,15 @@ function HomePage() {
         .select("id, image_url, title")
         .order("sort_order")
         .limit(12);
-      return data ?? [];
+      const items = data ?? [];
+      return Promise.all(
+        items.map(async (img) => {
+          const { data: signed } = await supabase.storage
+            .from("gallery")
+            .createSignedUrl(img.image_url, 3600);
+          return { ...img, signedUrl: signed?.signedUrl ?? "" };
+        }),
+      );
     },
   });
 
@@ -183,7 +191,7 @@ function HomePage() {
             {gallery.map((img) => (
               <div key={img.id} className="aspect-square overflow-hidden rounded-2xl">
                 <img
-                  src={img.image_url}
+                  src={img.signedUrl}
                   alt={img.title ?? "صورة من الروضة"}
                   className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   loading="lazy"

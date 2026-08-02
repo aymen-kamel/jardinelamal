@@ -68,10 +68,10 @@ function HomePage() {
             <h1 className="flex items-center gap-3 text-right text-5xl font-bold leading-tight md:text-6xl">
               روضة الأمل
               <img
-                src="/favicon.ico"
+                src="/logo.png"
                 alt=""
                 aria-hidden
-                className="h-11 w-11 object-contain"
+                className="h-14 w-14 object-contain"
               />
             </h1>
 

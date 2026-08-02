@@ -18,7 +18,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4">
         <Link to="/" className="flex items-center gap-2">
-          <img src="/favicon.ico" alt="شعار روضة الأمل" className="h-8 w-8 object-contain" aria-hidden />
+          <img src="/logo.png" alt="شعار روضة الأمل" className="h-10 w-10 object-contain" aria-hidden />
           <span className="font-[family-name:var(--font-display)] text-xl font-bold text-primary">
             {SITE.name}
           </span>

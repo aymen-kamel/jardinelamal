@@ -7,7 +7,7 @@ export function SiteFooter() {
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 md:grid-cols-3">
         <div>
           <h3 className="flex items-center gap-2 text-lg font-bold text-primary">
-            <img src="/favicon.ico" alt="شعار روضة الأمل" className="h-6 w-6 object-contain" aria-hidden />
+            <img src="/logo.png" alt="شعار روضة الأمل" className="h-8 w-8 object-contain" aria-hidden />
             {SITE.name}
           </h3>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">{SITE.intro}</p>

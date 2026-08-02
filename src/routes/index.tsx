@@ -25,7 +25,15 @@ function HomePage() {
         .select("id, image_url, title")
         .order("sort_order")
         .limit(12);
-      return data ?? [];
+      const items = data ?? [];
+      return Promise.all(
+        items.map(async (img) => {
+          const { data: signed } = await supabase.storage
+            .from("gallery")
+            .createSignedUrl(img.image_url, 3600);
+          return { ...img, signedUrl: signed?.signedUrl ?? "" };
+        }),
+      );
     },
   });
 

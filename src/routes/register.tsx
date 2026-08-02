@@ -35,10 +35,22 @@ export const Route = createFileRoute("/register")({
   component: RegisterPage,
 });
 
+function toISODate(date: Date) {
+  return date.toISOString().slice(0, 10);
+}
+
+const today = new Date();
+const MIN_BIRTH_DATE = toISODate(new Date(today.getFullYear() - 12, today.getMonth(), today.getDate()));
+const MAX_BIRTH_DATE = toISODate(today);
+
 const schema = z.object({
   child_first_name: z.string().trim().min(2, "الاسم مطلوب").max(60),
   child_last_name: z.string().trim().min(2, "اللقب مطلوب").max(60),
-  child_birth_date: z.string().min(1, "تاريخ الميلاد مطلوب"),
+  child_birth_date: z
+    .string()
+    .min(1, "تاريخ الميلاد مطلوب")
+    .refine((value) => value <= MAX_BIRTH_DATE, "تاريخ الميلاد لا يمكن أن يكون في المستقبل")
+    .refine((value) => value >= MIN_BIRTH_DATE, "عمر الطفل يجب أن يكون أقل من 12 سنة"),
   child_gender: z.string().min(1, "الجنس مطلوب"),
   section: z.string().min(1),
   parent_name: z.string().trim().min(3, "اسم ولقب الولي مطلوب").max(120),
@@ -163,7 +175,7 @@ function RegisterPage() {
               <Input name="child_last_name" maxLength={60} placeholder="لقب الطفل" />
             </Field>
             <Field label="تاريخ الميلاد" error={errors.child_birth_date}>
-              <Input name="child_birth_date" type="date" />
+              <Input name="child_birth_date" type="date" min={MIN_BIRTH_DATE} max={MAX_BIRTH_DATE} />
             </Field>
             <Field label="الجنس" error={errors.child_gender}>
               <Select value={gender} onValueChange={setGender}>

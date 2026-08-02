@@ -55,6 +55,13 @@ function ContactPage() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+
+    // Honeypot: hidden from real users, often auto-filled by bots. Pretend success.
+    if (String(form.get("website") ?? "").length > 0) {
+      setDone(true);
+      return;
+    }
+
     const values = {
       name: String(form.get("name") ?? ""),
       phone: String(form.get("phone") ?? ""),
@@ -131,6 +138,14 @@ function ContactPage() {
         </div>
 
         <form onSubmit={handleSubmit} className="surface-card space-y-5 p-6">
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="absolute -left-[9999px] h-0 w-0 opacity-0"
+          />
           <Field label="الاسم واللقب" error={errors.name}>
             <Input name="name" maxLength={150} placeholder="اسمكم الكامل" />
           </Field>

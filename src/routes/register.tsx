@@ -93,6 +93,13 @@ function RegisterPage() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
+
+    // Honeypot: hidden from real users, often auto-filled by bots. Pretend success.
+    if (String(form.get("website") ?? "").length > 0) {
+      setDone(true);
+      return;
+    }
+
     const values = {
       child_first_name: String(form.get("child_first_name") ?? ""),
       child_last_name: String(form.get("child_last_name") ?? ""),
@@ -165,6 +172,14 @@ function RegisterPage() {
       </p>
 
       <form onSubmit={handleSubmit} className="mt-10 space-y-8">
+        <input
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute -left-[9999px] h-0 w-0 opacity-0"
+        />
         <section className="surface-card space-y-5 p-6">
           <h2 className="text-xl font-bold">👶 معلومات الطفل</h2>
           <div className="grid gap-5 sm:grid-cols-2">

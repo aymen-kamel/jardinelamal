@@ -191,7 +191,7 @@ function HomePage() {
             {gallery.map((img) => (
               <div key={img.id} className="aspect-square overflow-hidden rounded-2xl">
                 <img
-                  src={img.image_url}
+                  src={img.signedUrl}
                   alt={img.title ?? "صورة من الروضة"}
                   className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                   loading="lazy"
